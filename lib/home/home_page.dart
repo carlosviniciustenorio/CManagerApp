@@ -11,9 +11,35 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   int counter = 0;
+
+  Widget _drawer() {
+    return Column(
+      children: [
+        UserAccountsDrawerHeader(
+          currentAccountPicture:
+              ClipOval(child: Image.asset('assets/profile.jpg')),
+          accountName: Text('Carlos Tenorio'),
+          accountEmail: Text('carlos.tenorio@gmail.com'),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Home'),
+          subtitle: Text('Home page'),
+          onTap: () => Navigator.of(context).pushReplacementNamed('/home'),
+        ),
+        ListTile(
+          leading: Icon(Icons.logout),
+          title: Text('Logout'),
+          onTap: () => Navigator.of(context).pushReplacementNamed('/'),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(child: _drawer()),
       appBar: AppBar(
         title: Text("CManager"),
         actions: [CustomSwitch()],
