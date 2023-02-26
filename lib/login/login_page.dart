@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/login_controller.dart';
+import '../models/user_model.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,10 +24,11 @@ class _LoginPageState extends State<LoginPage> {
       _errorMessage = '';
     });
 
-    var username = _mailAdressController.text;
-    var password = _passwordController.text;
+    final _userModel = User(
+        mailAdress: _mailAdressController.text,
+        password: _passwordController.text);
 
-    var success = await _loginController.loginUser(username, password);
+    var success = await _loginController.loginUser(_userModel);
 
     setState(() {
       _isLoading = false;
@@ -60,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 15,
               ),
               TextFormField(
-                obscureText: true,
+                obscureText: false,
                 controller: _mailAdressController,
                 validator: (value) => value == null || value.isEmpty
                     ? 'Please, input your mail adress'
