@@ -9,7 +9,7 @@ class LoginController {
   final _loginRepository = LoginRepository();
   Future<bool> loginUser(User user) async {
     var response = await _loginRepository.authenticate(user);
-    if (response.sucesso) {
+    if (response['sucesso']) {
       return true;
     } else {
       return false;
