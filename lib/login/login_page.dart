@@ -24,9 +24,8 @@ class _LoginPageState extends State<LoginPage> {
       _errorMessage = '';
     });
 
-    final _userModel = User(
-        mailAdress: _mailAdressController.text,
-        password: _passwordController.text);
+    final _userModel =
+        User(mailAdress: "carlos.tenorio@gmail.com", password: "C@rlos2626");
 
     var success = await _loginController.loginUser(_userModel);
 
@@ -64,9 +63,9 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 obscureText: false,
                 controller: _mailAdressController,
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Please, input your mail adress'
-                    : null,
+                // validator: (value) => value == null || value.isEmpty
+                //     ? 'Please, input your mail adress'
+                //     : null,
                 decoration: InputDecoration(
                     labelText: 'E-mail', border: OutlineInputBorder()),
               ),
@@ -76,9 +75,9 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 obscureText: true,
                 controller: _passwordController,
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Please, input your password'
-                    : null,
+                // validator: (value) => value == null || value.isEmpty
+                //     ? 'Please, input your password'
+                //     : null,
                 decoration: InputDecoration(
                     labelText: 'Password', border: OutlineInputBorder()),
               ),
