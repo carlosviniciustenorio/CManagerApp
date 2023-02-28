@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 controller: _passwordController,
                 validator: (value) => value == null || value.isEmpty
-                    ? 'Please, input your mail password'
+                    ? 'Please, input your password'
                     : null,
                 decoration: InputDecoration(
                     labelText: 'Password', border: OutlineInputBorder()),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/app_controller.dart';
+import '../controllers/home_controller.dart';
+import '../enums/home_state_enum.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  State<HomePage> createState() {
-    return HomePageState();
-  }
+  HomePageState createState() => HomePageState();
 }
 
 class HomePageState extends State<HomePage> {
-  int counter = 0;
+  final controller = HomeController();
 
   Widget _drawer() {
     return Column(
@@ -36,8 +36,7 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  _success() {
     return Scaffold(
       drawer: Drawer(child: _drawer()),
       appBar: AppBar(
@@ -49,20 +48,61 @@ class HomePageState extends State<HomePage> {
         height: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Contador: $counter'),
-          ],
+          children: [],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            counter++;
-          });
-        },
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.search), onPressed: () {}),
+    );
+  }
+
+  _error() {
+    return Scaffold(
+      body: Container(
+        color: Colors.black,
+        // width: double.infinity,
+        // height: double.infinity,
+        child: ElevatedButton(
+          onPressed: () {},
+          child: Text("Tentar novamente"),
+        ),
       ),
     );
+  }
+
+  _loading() => Center(child: CircularProgressIndicator(color: Colors.white));
+
+  _start() => Container();
+
+  stateManagement(HomeState state) {
+    switch (state) {
+      case HomeState.start:
+        return _start();
+
+      case HomeState.success:
+        return _success();
+
+      case HomeState.error:
+        return _error();
+
+      default:
+        return _loading();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller.start();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation: controller.state,
+        builder: (context, child) {
+          return stateManagement(controller.state.value);
+        });
   }
 }
 

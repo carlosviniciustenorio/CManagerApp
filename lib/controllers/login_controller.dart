@@ -1,22 +1,23 @@
 import 'dart:convert';
 
+import 'package:cmanagerapp/repositories/login_repository.dart';
 import 'package:http/http.dart' as http;
 
+import '../enums/home_state_enum.dart';
 import '../models/user_model.dart';
 
 class LoginController {
-  Future<bool> loginUser(User user) async {
-    var uri = Uri.parse('https://10.0.2.2:7110/api/usuarios/login');
-    Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    };
-    final body = jsonEncode({'email': user.mailAdress, 'senha': user.password});
-    var response = await http.post(uri, headers: headers, body: body);
+  final _loginRepository = LoginRepository();
+  HomeState state = HomeState.start;
 
-    if (response.statusCode == 200) {
+  Future<bool> loginUser(User user) async {
+    state = HomeState.loading;
+    var response = await _loginRepository.authenticate(user);
+    if (response['sucesso']) {
+      state = HomeState.success;
       return true;
     } else {
+      state = HomeState.error;
       return false;
     }
   }
