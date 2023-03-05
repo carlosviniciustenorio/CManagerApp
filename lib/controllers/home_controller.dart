@@ -6,6 +6,7 @@ import '../enums/home_state_enum.dart';
 class HomeController {
   final state = ValueNotifier<HomeState>(HomeState.start);
   final _homeRepository = HomeRepository();
+  static final List _anuncios = [];
 
   Future start() async {
     state.value = HomeState.loading;

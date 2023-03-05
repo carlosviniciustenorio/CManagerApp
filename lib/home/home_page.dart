@@ -1,3 +1,4 @@
+import 'package:cmanagerapp/widgets/anuncio/anuncio_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../controllers/app_controller.dart';
@@ -40,19 +41,15 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: Drawer(child: _drawer()),
       appBar: AppBar(
-        title: Text("CManager"),
+        title: Text("Anúncios"),
         actions: [CustomSwitch()],
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
-        ),
+      body: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return AnuncioWidget();
+        },
       ),
-      floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.search), onPressed: () {}),
     );
   }
 
