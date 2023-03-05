@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../controllers/app_controller.dart';
 import '../controllers/home_controller.dart';
 import '../enums/home_state_enum.dart';
+import '../models/anuncio_model.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final controller = HomeController();
+  static List<Anuncio> _anuncios = [];
 
   Widget _drawer() {
     return Column(
@@ -23,9 +25,8 @@ class HomePageState extends State<HomePage> {
           accountEmail: Text('carlos.tenorio@gmail.com'),
         ),
         ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Home'),
-          subtitle: Text('Home page'),
+          leading: Icon(Icons.car_crash_rounded),
+          title: Text('Anúncios'),
           onTap: () => Navigator.of(context).pushReplacementNamed('/home'),
         ),
         ListTile(
@@ -45,9 +46,11 @@ class HomePageState extends State<HomePage> {
         actions: [CustomSwitch()],
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: _anuncios.length,
         itemBuilder: (context, index) {
-          return AnuncioWidget();
+          return AnuncioWidget(
+            anuncios: _anuncios,
+          );
         },
       ),
     );
@@ -90,13 +93,17 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    controller.start();
+    setAnunciosList();
+  }
+
+  Future<void> setAnunciosList() async {
+    _anuncios = await controller.start();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: controller.state,
+    return FutureBuilder(
+        future: setAnunciosList(),
         builder: (context, child) {
           return stateManagement(controller.state.value);
         });

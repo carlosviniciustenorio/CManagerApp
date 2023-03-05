@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../models/anuncio_model.dart';
+
 class AnuncioWidget extends StatelessWidget {
-  AnuncioWidget();
+  AnuncioWidget({required List<Anuncio> anuncios});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 14.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 14.0),
         child: Container(
             decoration: BoxDecoration(
                 color: Colors.white60,
