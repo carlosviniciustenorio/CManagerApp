@@ -1,10 +1,10 @@
 import 'package:cmanagerapp/widgets/anuncio/anuncio_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/app_controller.dart';
-import '../controllers/home_controller.dart';
-import '../enums/home_state_enum.dart';
-import '../models/anuncio_model.dart';
+import '../../controllers/app_controller.dart';
+import '../../controllers/home_controller.dart';
+import '../../enums/home_state_enum.dart';
+import '../../models/anuncio_model.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -43,14 +43,15 @@ class HomePageState extends State<HomePage> {
       drawer: Drawer(child: _drawer()),
       appBar: AppBar(
         title: Text("Anúncios"),
-        actions: [CustomSwitch()],
+        actions: [
+          IconButton(onPressed: () => '', icon: Icon(Icons.filter_list))
+          // CustomSwitch()
+        ],
       ),
       body: ListView.builder(
         itemCount: _anuncios.length,
         itemBuilder: (context, index) {
-          return AnuncioWidget(
-            anuncios: _anuncios,
-          );
+          return AnuncioWidget(anuncio: _anuncios[index]);
         },
       ),
     );
