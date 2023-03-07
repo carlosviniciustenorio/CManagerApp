@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../controllers/app_controller.dart';
 import '../../controllers/home_controller.dart';
 import '../../enums/home_state_enum.dart';
-import '../../models/anuncio_model.dart';
+import '../../models/anuncios_model.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final controller = HomeController();
-  static List<Anuncio> _anuncios = [];
+  static List<Anuncios> _anuncios = [];
 
   Widget _drawer() {
     return Column(

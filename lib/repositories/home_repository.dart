@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import '../base/secure_storage_app.dart';
-import '../models/anuncio_model.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/anuncios_model.dart';
 
 class HomeRepository {
   final dio = new Dio();
 
-  Future<List<Anuncio>> getAnuncios() async {
+  Future<List<Anuncios>> getAnuncios() async {
     var accessToken = await getToken();
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -20,8 +21,8 @@ class HomeRepository {
     var response = await http.get(Uri.parse(uri), headers: headers);
 
     List<dynamic> jsonList = json.decode(response.body);
-    List<Anuncio> anuncios =
-        jsonList.map((json) => Anuncio.fromJson(json)).toList();
+    List<Anuncios> anuncios =
+        jsonList.map((json) => Anuncios.fromJson(json)).toList();
 
     return anuncios;
   }

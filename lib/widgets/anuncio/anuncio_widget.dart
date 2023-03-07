@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../models/anuncio_model.dart';
+import '../../models/anuncios_model.dart';
 
 class AnuncioWidget extends StatelessWidget {
-  static Anuncio _anuncio = Anuncio();
-  AnuncioWidget({required Anuncio anuncio}) {
+  static Anuncios _anuncio = Anuncios();
+  AnuncioWidget({required Anuncios anuncio}) {
     _anuncio = anuncio;
   }
 
@@ -39,10 +39,7 @@ class AnuncioWidget extends StatelessWidget {
                           color: Color.fromARGB(255, 124, 123, 123),
                         ),
                         title: Text(
-                          'Ano: ' +
-                              _anuncio.anoFabricacao.toString() +
-                              '/' +
-                              _anuncio.anoModelo.toString(),
+                          "Ano:  ${_anuncio.modelo?.anoFabricacao.toString()} / ${_anuncio.modelo?.anoModelo.toString()}",
                           style: TextStyle(
                               color: Color.fromARGB(255, 124, 123, 123)),
                         ),
@@ -65,7 +62,7 @@ class AnuncioWidget extends StatelessWidget {
                       child: ListTile(
                         leading: Icon(Icons.price_change,
                             color: Color.fromARGB(255, 124, 123, 123)),
-                        title: Text('Valor: ' + _anuncio.preco.toString(),
+                        title: Text("Valor: ${_anuncio.preco.toString()}",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 124, 123, 123))),
                       ),
@@ -74,7 +71,7 @@ class AnuncioWidget extends StatelessWidget {
                       child: ListTile(
                         leading: Icon(Icons.location_city,
                             color: Color.fromARGB(255, 124, 123, 123)),
-                        title: Text('Estado: ' + _anuncio.estado.toString(),
+                        title: Text("Estado: ${_anuncio.estado.toString()}",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 124, 123, 123))),
                       ),
@@ -87,7 +84,8 @@ class AnuncioWidget extends StatelessWidget {
                       child: ListTile(
                         leading: Icon(Icons.turned_in,
                             color: Color.fromARGB(255, 124, 123, 123)),
-                        title: Text('Versão: ' + _anuncio.versao.toString(),
+                        title: Text(
+                            "Versão: ${_anuncio.modelo?.versao?.descricao.toString()}",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 124, 123, 123))),
                       ),

@@ -1,13 +1,8 @@
-class Anuncio {
+class Anuncios {
   String? id;
-  String? placa;
   Modelo? modelo;
-  List<TiposCombustiveis>? tiposCombustiveis;
-  int? portas;
   int? cambio;
   int? cor;
-  List<Opcionais>? opcionais;
-  List<Caracteristicas>? caracteristicas;
   String? km;
   String? estado;
   double? preco;
@@ -15,16 +10,11 @@ class Anuncio {
   bool? exibirTelefone;
   bool? exibirEmail;
 
-  Anuncio(
+  Anuncios(
       {this.id,
-      this.placa,
       this.modelo,
-      this.tiposCombustiveis,
-      this.portas,
       this.cambio,
       this.cor,
-      this.opcionais,
-      this.caracteristicas,
       this.km,
       this.estado,
       this.preco,
@@ -32,32 +22,12 @@ class Anuncio {
       this.exibirTelefone,
       this.exibirEmail});
 
-  Anuncio.fromJson(Map<String, dynamic> json) {
+  Anuncios.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    placa = json['placa'];
     modelo =
         json['modelo'] != null ? new Modelo.fromJson(json['modelo']) : null;
-    if (json['tiposCombustiveis'] != null) {
-      tiposCombustiveis = <TiposCombustiveis>[];
-      json['tiposCombustiveis'].forEach((v) {
-        tiposCombustiveis!.add(new TiposCombustiveis.fromJson(v));
-      });
-    }
-    portas = json['portas'];
     cambio = json['cambio'];
     cor = json['cor'];
-    if (json['opcionais'] != null) {
-      opcionais = <Opcionais>[];
-      json['opcionais'].forEach((v) {
-        opcionais!.add(new Opcionais.fromJson(v));
-      });
-    }
-    if (json['caracteristicas'] != null) {
-      caracteristicas = <Caracteristicas>[];
-      json['caracteristicas'].forEach((v) {
-        caracteristicas!.add(new Caracteristicas.fromJson(v));
-      });
-    }
     km = json['km'];
     estado = json['estado'];
     preco = json['preco'];
@@ -69,24 +39,11 @@ class Anuncio {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['placa'] = this.placa;
     if (this.modelo != null) {
       data['modelo'] = this.modelo!.toJson();
     }
-    if (this.tiposCombustiveis != null) {
-      data['tiposCombustiveis'] =
-          this.tiposCombustiveis!.map((v) => v.toJson()).toList();
-    }
-    data['portas'] = this.portas;
     data['cambio'] = this.cambio;
     data['cor'] = this.cor;
-    if (this.opcionais != null) {
-      data['opcionais'] = this.opcionais!.map((v) => v.toJson()).toList();
-    }
-    if (this.caracteristicas != null) {
-      data['caracteristicas'] =
-          this.caracteristicas!.map((v) => v.toJson()).toList();
-    }
     data['km'] = this.km;
     data['estado'] = this.estado;
     data['preco'] = this.preco;
@@ -165,63 +122,6 @@ class Versao {
   Versao({this.id, this.descricao});
 
   Versao.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    descricao = json['descricao'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['descricao'] = this.descricao;
-    return data;
-  }
-}
-
-class TiposCombustiveis {
-  int? id;
-  String? descricao;
-
-  TiposCombustiveis({this.id, this.descricao});
-
-  TiposCombustiveis.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    descricao = json['descricao'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['descricao'] = this.descricao;
-    return data;
-  }
-}
-
-class Opcionais {
-  int? id;
-  String? descricao;
-
-  Opcionais({this.id, this.descricao});
-
-  Opcionais.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    descricao = json['descricao'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['descricao'] = this.descricao;
-    return data;
-  }
-}
-
-class Caracteristicas {
-  int? id;
-  String? descricao;
-
-  Caracteristicas({this.id, this.descricao});
-
-  Caracteristicas.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     descricao = json['descricao'];
   }
