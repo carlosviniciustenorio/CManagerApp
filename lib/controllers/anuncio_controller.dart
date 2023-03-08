@@ -1,20 +1,20 @@
-import 'dart:convert';
-
 import 'package:cmanagerapp/repositories/anuncio_repository.dart';
 import 'package:flutter/material.dart';
-
 import '../enums/state_default_enum.dart';
-import '../models/anuncios_model.dart';
+import '../models/anuncio_model.dart';
 
-class HomeController {
+class AnuncioController {
   final state = ValueNotifier<StateDefault>(StateDefault.start);
   final _anuncioRepository = AnuncioRepository();
-  static final List _anuncios = [];
 
-  Future<List<Anuncios>> start() async {
+  Future<Anuncio> get(String id) async {
     state.value = StateDefault.loading;
-    var response = await _anuncioRepository.getAnuncios();
-    state.value = StateDefault.success;
+    var response = await _anuncioRepository.getAnuncio(id);
+    if (response != null)
+      state.value = StateDefault.success;
+    else
+      state.value = StateDefault.error;
+
     return response;
   }
 }

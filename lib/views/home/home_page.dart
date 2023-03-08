@@ -1,9 +1,10 @@
-import 'package:cmanagerapp/widgets/anuncio/anuncio_widget.dart';
+import 'package:cmanagerapp/widgets/anuncio/anuncios_widget.dart';
+import 'package:cmanagerapp/widgets/drawer/drawer_default_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/app_controller.dart';
 import '../../controllers/home_controller.dart';
-import '../../enums/home_state_enum.dart';
+import '../../enums/state_default_enum.dart';
 import '../../models/anuncios_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,32 +16,9 @@ class HomePageState extends State<HomePage> {
   final controller = HomeController();
   static List<Anuncios> _anuncios = [];
 
-  Widget _drawer() {
-    return Column(
-      children: [
-        UserAccountsDrawerHeader(
-          currentAccountPicture:
-              ClipOval(child: Image.asset('assets/profile.jpg')),
-          accountName: Text('Carlos Tenorio'),
-          accountEmail: Text('carlos.tenorio@gmail.com'),
-        ),
-        ListTile(
-          leading: Icon(Icons.car_crash_rounded),
-          title: Text('Anúncios'),
-          onTap: () => Navigator.of(context).pushReplacementNamed('/home'),
-        ),
-        ListTile(
-          leading: Icon(Icons.logout),
-          title: Text('Logout'),
-          onTap: () => Navigator.of(context).pushReplacementNamed('/'),
-        )
-      ],
-    );
-  }
-
   _success() {
     return Scaffold(
-      drawer: Drawer(child: _drawer()),
+      drawer: Drawer(child: DrawerDefaultWidget()),
       appBar: AppBar(
         title: Text("Anúncios"),
         actions: [
@@ -51,7 +29,7 @@ class HomePageState extends State<HomePage> {
       body: ListView.builder(
         itemCount: _anuncios.length,
         itemBuilder: (context, index) {
-          return AnuncioWidget(anuncio: _anuncios[index]);
+          return AnunciosWidget(anuncio: _anuncios[index]);
         },
       ),
     );
@@ -75,15 +53,15 @@ class HomePageState extends State<HomePage> {
 
   _start() => Container();
 
-  stateManagement(HomeState state) {
+  stateManagement(StateDefault state) {
     switch (state) {
-      case HomeState.start:
+      case StateDefault.start:
         return _start();
 
-      case HomeState.success:
+      case StateDefault.success:
         return _success();
 
-      case HomeState.error:
+      case StateDefault.error:
         return _error();
 
       default:
