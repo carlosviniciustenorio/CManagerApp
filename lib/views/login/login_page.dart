@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../controllers/login_controller.dart';
-import '../models/user_model.dart';
+import '../../controllers/login_controller.dart';
+import '../../models/user_model.dart';
 
 class LoginPage extends StatefulWidget {
   @override
