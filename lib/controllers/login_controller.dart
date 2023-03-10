@@ -27,21 +27,4 @@ class LoginController {
       return false;
     }
   }
-
-  Future<void> signInWithGoogle() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount!.authentication;
-
-    final OAuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
-
-    var userCredential = await _auth.signInWithCredential(credential);
-    SecureStorageApp.Write(
-        'access_token', "${userCredential.credential?.token?.toString()}");
-  }
 }

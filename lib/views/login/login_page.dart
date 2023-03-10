@@ -1,3 +1,4 @@
+import 'package:cmanagerapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
@@ -90,15 +91,35 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _login,
-                  child: Text('Login'),
+                  child: Text('Sign in'),
                 ),
               ),
-              SignInButton(
-                Buttons.Google,
-                onPressed: () {
-                  _loginController.signInWithGoogle();
-                },
+              SizedBox(
+                height: 5,
               ),
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.green)),
+                  onPressed: _isLoading ? null : _login,
+                  child: Text('Create new account'),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Title(color: Colors.white, child: Text("OR")),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                width: double.infinity,
+                child: SignInButton(
+                  Buttons.Google,
+                  onPressed: () => AuthService().signInWithGoogle(),
+                ),
+              )
             ],
           ),
         ),
