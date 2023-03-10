@@ -11,7 +11,7 @@ class LoginRepository {
     "Accept": "application/json"
   };
 
-  Future authenticate(User user) async {
+  Future authenticate(UserModel user) async {
     final uri = "https://10.0.2.2:7110/api/usuarios/login";
     final body = jsonEncode({'email': user.mailAdress, 'senha': user.password});
 

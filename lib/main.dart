@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'app_widget.dart';
 
-main() {
+main() async {
   HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(AppWidget());
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 import '../../controllers/login_controller.dart';
 import '../../models/user_model.dart';
@@ -24,11 +25,11 @@ class _LoginPageState extends State<LoginPage> {
       _errorMessage = '';
     });
 
-    final _userModel = User(
+    final _userModel = UserModel(
         mailAdress: _mailAdressController.text,
         password: _passwordController.text);
 
-    var success = await _loginController.loginUser(_userModel);
+    var success = await _loginController.signInWithMail(_userModel);
 
     setState(() {
       _isLoading = false;
@@ -91,7 +92,13 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: _isLoading ? null : _login,
                   child: Text('Login'),
                 ),
-              )
+              ),
+              SignInButton(
+                Buttons.Google,
+                onPressed: () {
+                  _loginController.signInWithGoogle();
+                },
+              ),
             ],
           ),
         ),
