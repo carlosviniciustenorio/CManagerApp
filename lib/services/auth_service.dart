@@ -22,7 +22,7 @@ class AuthService {
         });
   }
 
-  signInWithGoogle() async {
+  signInWithGoogle(BuildContext context) async {
     final GoogleSignInAccount? googleUser =
         await GoogleSignIn(scopes: <String>["email"]).signIn();
 
@@ -42,7 +42,7 @@ class AuthService {
 
     state.value = StateDefault.success;
 
-    return userCredential;
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   signOut() => FirebaseAuth.instance.signOut();

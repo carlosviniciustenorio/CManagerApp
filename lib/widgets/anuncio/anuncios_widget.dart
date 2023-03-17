@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/anuncios_model.dart';
 import '../../views/anuncio/anuncio_page.dart';
 
@@ -30,10 +30,19 @@ class AnunciosWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
-                    child: Image.asset(
-                  'assets/car.jpg',
-                  width: MediaQuery.of(context).size.width,
-                  height: 250,
+                    child: CachedNetworkImage(
+                  imageUrl: _anuncio.imagem.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.mode(
+                              Colors.red, BlendMode.colorBurn)),
+                    ),
+                  ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 )),
                 Row(
                   children: [

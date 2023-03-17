@@ -7,6 +7,8 @@ import 'controllers/app_controller.dart';
 import 'views/login/login_page.dart';
 
 class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(

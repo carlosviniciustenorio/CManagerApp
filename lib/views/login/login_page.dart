@@ -117,7 +117,9 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 child: SignInButton(
                   Buttons.Google,
-                  onPressed: () => AuthService().signInWithGoogle(),
+                  onPressed: () => _isLoading
+                      ? null
+                      : AuthService().signInWithGoogle(context),
                 ),
               )
             ],

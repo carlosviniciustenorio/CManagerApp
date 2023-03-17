@@ -9,6 +9,7 @@ class Anuncios {
   String? usuarioId;
   bool? exibirTelefone;
   bool? exibirEmail;
+  Imagem? imagem;
 
   Anuncios(
       {this.id,
@@ -20,7 +21,8 @@ class Anuncios {
       this.preco,
       this.usuarioId,
       this.exibirTelefone,
-      this.exibirEmail});
+      this.exibirEmail,
+      this.imagem});
 
   Anuncios.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -34,6 +36,8 @@ class Anuncios {
     usuarioId = json['usuarioId'];
     exibirTelefone = json['exibirTelefone'];
     exibirEmail = json['exibirEmail'];
+    imagem =
+        json['imagem'] != null ? new Imagem.fromJson(json['imagem']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -50,6 +54,9 @@ class Anuncios {
     data['usuarioId'] = this.usuarioId;
     data['exibirTelefone'] = this.exibirTelefone;
     data['exibirEmail'] = this.exibirEmail;
+    if (this.imagem != null) {
+      data['imagem'] = this.imagem!.toJson();
+    }
     return data;
   }
 }
@@ -130,6 +137,22 @@ class Versao {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['descricao'] = this.descricao;
+    return data;
+  }
+}
+
+class Imagem {
+  String? arn;
+
+  Imagem({this.arn});
+
+  Imagem.fromJson(Map<String, dynamic> json) {
+    arn = json['arn'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['arn'] = this.arn;
     return data;
   }
 }
