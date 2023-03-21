@@ -14,10 +14,12 @@ class DrawerDefaultWidget extends StatelessWidget {
         UserAccountsDrawerHeader(
           currentAccountPicture:
               ClipOval(child: Image.asset('assets/profile.jpg')),
-          accountName:
-              Text(FirebaseAuth.instance.currentUser!.displayName.toString()),
-          accountEmail:
-              Text(FirebaseAuth.instance.currentUser!.email.toString()),
+          accountName: Text(
+              // FirebaseAuth.instance.currentUser!.displayName.toString()
+              ""),
+          accountEmail: Text(
+              // FirebaseAuth.instance.currentUser!.email.toString()
+              "s"),
         ),
         ListTile(
           leading: Icon(Icons.car_crash_rounded),

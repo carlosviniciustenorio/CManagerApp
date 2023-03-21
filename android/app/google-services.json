@@ -1,42 +1,49 @@
 {
   "project_info": {
-    "project_number": "597244459726",
-    "project_id": "cmanager-e2055",
-    "storage_bucket": "cmanager-e2055.appspot.com"
+    "project_number": "1068771102491",
+    "project_id": "cmananagerapp",
+    "storage_bucket": "cmananagerapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:597244459726:android:1226a50b025de5b636ee9f",
+        "mobilesdk_app_id": "1:1068771102491:android:0ac15508f58457786fcdbe",
         "android_client_info": {
           "package_name": "com.example.cmanagerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "597244459726-sdv76toumg3cvq4sj06nprsc50cuqp6u.apps.googleusercontent.com",
+          "client_id": "1068771102491-l8e040jqiv2kajljmdl5blflqeps3ec5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.cmanagerapp",
-            "certificate_hash": "6ebe55751adf1bfba1597c20086500cdfe7f1ea4"
+            "certificate_hash": "4ab6d7209162030503211bffb2479cc6eb1dbbbd"
           }
         },
         {
-          "client_id": "597244459726-1h382mq6flm6ckk5sj0j7og6ihgtu2m1.apps.googleusercontent.com",
+          "client_id": "1068771102491-n2nhbb5t4oot0l26fvt75tmi0gileod3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDG0B-zQYg4LFMQizQsVb_SJaAoIL8WVg4"
+          "current_key": "AIzaSyAMXnEbc0fLBvhL8xo93wKrM5Owt5nJmMk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "597244459726-1h382mq6flm6ckk5sj0j7og6ihgtu2m1.apps.googleusercontent.com",
+              "client_id": "1068771102491-kc7pb0i8j5seot613ipco9bur78oo79j.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1068771102491-1lj8gbce2haiot1uhvtolj6s7r6s41bg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cmanagerapp"
+              }
             }
           ]
         }

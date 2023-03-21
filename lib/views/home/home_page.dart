@@ -1,3 +1,4 @@
+import 'package:cmanagerapp/controllers/anuncio_controller.dart';
 import 'package:cmanagerapp/widgets/anuncio/anuncios_widget.dart';
 import 'package:cmanagerapp/widgets/drawer/drawer_default_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final controller = HomeController();
+  final anuncioController = AnuncioController();
+  ScrollController _scrollController = ScrollController();
   static List<Anuncios> _anuncios = [];
 
   _success() {
@@ -27,6 +30,7 @@ class HomePageState extends State<HomePage> {
         ],
       ),
       body: ListView.builder(
+        controller: _scrollController,
         itemCount: _anuncios.length,
         itemBuilder: (context, index) {
           return AnunciosWidget(anuncio: _anuncios[index]);
@@ -73,10 +77,26 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     setAnunciosList();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        getNewsAnuncios();
+      }
+    });
   }
 
   Future<void> setAnunciosList() async {
-    _anuncios = await controller.start();
+    if (_anuncios.isEmpty)
+      _anuncios = await controller.start();
+    else
+      controller.refresh();
+  }
+
+  Future<void> getNewsAnuncios() async {
+    var newItems = await anuncioController.getAnuncios(_anuncios.length, 2);
+    setState(() {
+      _anuncios.addAll(newItems);
+    });
   }
 
   @override
