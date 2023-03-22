@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:intl/intl.dart';
 import '../../models/anuncios_model.dart';
 import '../../views/anuncio/anuncio_page.dart';
 
@@ -11,6 +12,8 @@ class AnunciosWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var formatador = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
+
     return Card(
       // color: Color.fromARGB(221, 110, 110, 110),
       child: GestureDetector(
@@ -99,7 +102,7 @@ class AnunciosWidget extends StatelessWidget {
                       child: ListTile(
                         leading: Icon(Icons.price_change,
                             color: Color.fromARGB(255, 2, 5, 23)),
-                        title: Text("${_anuncio.preco.toString()} mil",
+                        title: Text("${formatador.format(_anuncio.preco)}",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 124, 123, 123))),
                       ),
