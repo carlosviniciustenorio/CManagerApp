@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/anuncios_model.dart';
 import '../../views/anuncio/anuncio_page.dart';
 
 class AnunciosWidget extends StatelessWidget {
   static Anuncios _anuncio = Anuncios();
-  AnunciosWidget({required Anuncios anuncio}) {
+  AnunciosWidget({super.key, required Anuncios anuncio}) {
     _anuncio = anuncio;
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color.fromARGB(255, 235, 231, 231),
+      // color: Color.fromARGB(221, 110, 110, 110),
       child: GestureDetector(
         onTap: () => Navigator.push(
             context,
@@ -20,21 +20,25 @@ class AnunciosWidget extends StatelessWidget {
                 builder: (context) => AnuncioPage(),
                 settings: RouteSettings(arguments: _anuncio.id))),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 1.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: Container(
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 235, 231, 231),
+                color: Color.fromARGB(214, 255, 255, 255),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             height: 450,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
-                    child: Image.asset(
-                  'assets/car.jpg',
-                  width: MediaQuery.of(context).size.width,
-                  height: 250,
-                )),
+                    heightFactor: 1.2,
+                    child: CachedNetworkImage(
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      imageUrl: "${_anuncio.imagem?.arn?.toString()}",
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                    )),
                 Row(
                   children: [
                     Flexible(

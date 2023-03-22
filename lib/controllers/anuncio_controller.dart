@@ -2,6 +2,7 @@ import 'package:cmanagerapp/repositories/anuncio_repository.dart';
 import 'package:flutter/material.dart';
 import '../enums/state_default_enum.dart';
 import '../models/anuncio_model.dart';
+import '../models/anuncios_model.dart';
 
 class AnuncioController {
   final state = ValueNotifier<StateDefault>(StateDefault.start);
@@ -14,6 +15,13 @@ class AnuncioController {
       state.value = StateDefault.success;
     else
       state.value = StateDefault.error;
+
+    return response;
+  }
+
+  Future<List<Anuncios>> getAnuncios(int skip, int take) async {
+    state.value = StateDefault.loading;
+    var response = await _anuncioRepository.getAnuncios(skip, take);
 
     return response;
   }

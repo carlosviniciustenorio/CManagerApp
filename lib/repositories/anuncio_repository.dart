@@ -11,14 +11,15 @@ import '../models/anuncios_model.dart';
 class AnuncioRepository {
   final dio = new Dio();
 
-  Future<List<Anuncios>> getAnuncios() async {
+  Future<List<Anuncios>> getAnuncios(int skip, int take) async {
     var accessToken = await getToken();
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
       "Authorization": "Bearer $accessToken"
     };
-    final uri = "https://10.0.2.2:7110/api/anuncio/getAll";
+    final uri =
+        "https://10.0.2.2:7110/api/anuncio/getAll?skip=${skip}&take=${take}";
     var response = await http.get(Uri.parse(uri), headers: headers);
 
     List<dynamic> jsonList = json.decode(response.body);
