@@ -93,7 +93,7 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> getNewsAnuncios() async {
-    var newItems = await anuncioController.getAnuncios(_anuncios.length, 2);
+    var newItems = await anuncioController.getAnuncios(_anuncios.length, 15);
     setState(() {
       _anuncios.addAll(newItems);
     });

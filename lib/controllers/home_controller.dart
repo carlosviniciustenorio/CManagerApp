@@ -13,7 +13,7 @@ class HomeController {
 
   Future<List<Anuncios>> start() async {
     state.value = StateDefault.loading;
-    var response = await _anuncioRepository.getAnuncios(0, 10);
+    var response = await _anuncioRepository.getAnuncios(0, 15);
     state.value = StateDefault.success;
     return response;
   }

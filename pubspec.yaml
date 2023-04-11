@@ -34,7 +34,9 @@ dependencies:
   dio: ^5.0.1
   flutter_secure_storage: ^8.0.0
   firebase_core: ^2.8.0
+  firebase_auth_web: ^5.2.10
   firebase_auth: ^4.2.10
+  intl: ^0.17.0
   google_sign_in: ^6.0.2
   flutter_signin_button: ^2.0.0
   cached_network_image: ^3.2.3
